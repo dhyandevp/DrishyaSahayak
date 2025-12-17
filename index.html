@@ -1,0 +1,3229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drishya Sahayak | AI Vision Assistant</title>
+    <meta name="description"
+        content="Empowering the visually impaired with real-time AI object detection, navigation, and audio feedback. Next-gen wearable technology for independence.">
+    <meta name="keywords"
+        content="Drishya Sahayak, visual assistant, ai glasses, object detection, raspberry pi, accessibility technology">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drishyasahayak.com/">
+    <meta property="og:title" content="Drishya Sahayak | AI Vision Assistant">
+    <meta property="og:description"
+        content="Empowering the visually impaired with real-time AI object detection and audio feedback.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Drishya Sahayak | AI Vision Assistant">
+    <meta property="twitter:description"
+        content="Empowering the visually impaired with real-time AI object detection and audio feedback.">
+
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- PWA & Mobile -->
+    <meta name="theme-color" content="#020203">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://drishyasahayak.com/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👁️</text></svg>">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Drishya Sahayak",
+      "description": "AI-powered vision assistant for the visually impaired",
+      "url": "https://drishyasahayak.com",
+      "logo": "https://drishyasahayak.com/assets/engineering_workshop.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-8281374024",
+        "contactType": "Customer Service",
+        "email": "drishyasahayak@gmail.com"
+      },
+      "sameAs": [
+        "https://linktr.ee/DhyandevRTX"
+      ]
+    }
+    </script>
+
+    <style>
+        /* Core Design System */
+        :root {
+            --bg-main: #020203;
+            --bg-surface: #0a0b0e;
+            --bg-surface-2: #14161a;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #64748b;
+            --accent-hover: #7dd3fc;
+            --accent-muted: rgba(56, 189, 248, 0.1);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #475569;
+            --glass-bg: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --border-subtle: #1e293b;
+            --overlay-dark: rgba(2, 2, 3, 0.8);
+            --border-gradient: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(56, 189, 248, 0));
+            --font-heading: 'Satoshi', 'Inter', system-ui, sans-serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+            --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.15);
+            --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.9);
+            --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+            --duration-fast: 0.2s;
+            --duration-normal: 0.4s;
+            --duration-slow: 0.7s;
+        }
+
+        /* Global Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(to bottom right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            font-weight: 500;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            max-width: 65ch;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--duration-fast) ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-padding {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+
+        .flex,
+        .flex-center,
+        .flex-between {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .flex-center {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-accent {
+            color: var(--accent-primary);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .surface-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(5px);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out), filter 0.8s var(--ease-out);
+            will-change: opacity, transform, filter;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+
+
+        /* Technical Grid Pattern for Placeholders */
+        .tech-grid-bg {
+            background-color: var(--bg-surface-2);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .tech-grid-bg::after {
+            content: 'SYSTEM OFFLINE // VISUALIZER DEMO';
+            font-family: monospace;
+            color: var(--accent-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            transition: border-color var(--duration-fast);
+        }
+
+        .tech-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .tech-detail-list {
+            margin-top: 1.5rem;
+        }
+
+        .tech-detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .tech-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-subtle);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-secondary);
+        }
+
+        /* Accessibility */
+        .skip-link:focus {
+            left: 0;
+            top: 0;
+        }
+
+        footer a[href*="#developer"]:hover {
+            text-decoration: none !important;
+            color: var(--accent-primary) !important;
+            text-shadow: 0 0 10px var(--accent-muted);
+        }
+
+        /* Component Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            justify-content: center;
+            padding: 0.8rem 2rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
+            white-space: nowrap;
+            border: 1px solid transparent;
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-main);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-primary);
+            color: var(--bg-main);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border-color: var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: var(--glass-bg);
+        }
+
+        .btn-glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            border-color: var(--glass-border);
+            color: var(--text-primary);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn svg {
+            margin-right: 0.5rem;
+            width: 1.2em;
+            height: 1.2em;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: var(--border-gradient);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity var(--duration-normal);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-feature {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 2.5rem;
+            border-radius: var(--radius-xl);
+            transition: all var(--duration-normal) var(--ease-out);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-feature:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+            background: rgba(56, 189, 248, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            transition: all var(--duration-normal);
+        }
+
+        .card-feature:hover .card-icon {
+            background: var(--accent-primary);
+            color: var(--bg-main);
+            transform: scale(1.1);
+        }
+
+        .card-feature h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .card-feature p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Navbar */
+        .main-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all var(--duration-normal) var(--ease-out);
+            background: transparent;
+        }
+
+        .main-navbar.scrolled {
+            background: rgba(2, 2, 3, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color var(--duration-fast);
+            cursor: pointer;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width var(--duration-fast);
+            box-shadow: 0 0 8px var(--accent-primary);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none !important;
+            }
+        }
+
+        /* Hero Section (Common) */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            height: 70vh;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+            filter: blur(100px);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 2rem;
+        }
+
+        .hero-text-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-image-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-text-column {
+                align-items: center;
+            }
+
+            .hero-text-column h1,
+            .hero-text-column p {
+                text-align: center !important;
+            }
+        }
+
+        /* Footer UI */
+        .site-footer {
+            background: var(--bg-surface);
+            padding: 6rem 0 2rem;
+            border-top: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+            padding-left: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .footer-copyright {
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        .footer-attribution {
+            margin-top: 0.5rem;
+        }
+
+        .footer-attribution a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .footer-attribution a:hover {
+            color: #fff;
+        }
+
+        /* Modals & Mobile Menu */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--duration-normal);
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem;
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 550px;
+            transform: scale(0.95) translateY(20px);
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-backdrop.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all var(--duration-normal) var(--ease-out);
+            z-index: 2100;
+        }
+
+        .toast.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 2, 3, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--duration-normal);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-overlay a {
+            font-size: 1.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-overlay a:hover,
+        .mobile-menu-overlay a.active {
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+
+
+
+
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-right: 4rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .marquee-item svg {
+            color: var(--accent-primary);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Developer */
+        .dev-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .dev-profile {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .dev-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-primary);
+            padding: 4px;
+            margin-bottom: 2rem;
+            object-fit: cover;
+            background: var(--bg-surface-2);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* About */
+        .about-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 2px solid var(--border-subtle);
+            padding-left: 2rem;
+            margin-top: 4rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -2.6rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--bg-main);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Features */
+        .feature-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .tech-card {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .tech-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .tech-detail-list {
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
+        }
+
+        .tech-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .tech-detail-item svg {
+            color: var(--accent-primary);
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Pricing */
+        .pricing-hero {
+            padding: 8rem 0 2rem;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto;
+        }
+
+        .price-card {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .price-card.popular {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 40px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(180deg, var(--bg-surface-2) 0%, rgba(56, 189, 248, 0.05) 100%);
+        }
+
+        .price-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-primary);
+            color: var(--bg-main);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 1.5rem 0 0.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list {
+            margin: 2rem 0;
+            flex-grow: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .feature-item.disabled {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .feature-item svg {
+            color: var(--accent-primary);
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* Accordion (Common) */
+        .accordion {
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: var(--text-secondary);
+        }
+
+        .accordion-content p {
+            padding-bottom: 1.5rem;
+        }
+
+        /* Contact */
+        .contact-hero {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info-card {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            height: 100%;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-icon {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-primary);
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background: var(--bg-surface);
+            padding: 2.5rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-main);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .map-section {
+            height: 400px;
+            background: var(--bg-surface-2);
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* Documentation - Enhanced & Production-Ready */
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 3rem;
+            align-items: start;
+            padding-top: 2rem;
+        }
+
+        .side-nav {
+            position: sticky;
+            top: 100px;
+            background: var(--bg-surface);
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .side-nav h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-tertiary);
+            margin: 0 0 0.75rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .side-nav h4:not(:first-child) {
+            margin-top: 1.5rem;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-radius: var(--radius-sm);
+            transition: all var(--duration-fast);
+            margin-bottom: 0.25rem;
+        }
+
+        .side-nav a:hover {
+            color: var(--text-primary);
+            background: var(--bg-surface-2);
+            padding-left: 1rem;
+        }
+
+        .side-nav a.active {
+            color: var(--accent-primary);
+            background: var(--accent-muted);
+            font-weight: 500;
+        }
+
+        /* Mobile Docs Navigation */
+        .mobile-docs-nav {
+            display: none;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-docs-select {
+            width: 100%;
+            padding: 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .mobile-docs-select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        /* Code Block with Copy Button */
+        .code-block-wrapper {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 1.5rem;
+            padding-top: 2.5rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            color: #e6edf3;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            white-space: pre;
+            tab-size: 4;
+        }
+
+        .code-copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all var(--duration-fast);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .code-copy-btn:hover {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .code-copy-btn.copied {
+            background: var(--success);
+            color: #fff;
+            border-color: var(--success);
+        }
+
+        /* Notice/Alert Box */
+        .notice {
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning);
+            border-left-width: 4px;
+            color: var(--text-primary);
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .notice.info {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-primary);
+        }
+
+        .notice.success {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        /* Docs Content Anchors */
+        .docs-content [id] {
+            scroll-margin-top: 120px;
+        }
+
+        .docs-content h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .docs-content h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .docs-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .docs-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .docs-content ul li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .docs-content code {
+            background: var(--bg-surface-2);
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+            font-family: 'Consolas', monospace;
+            font-size: 0.875em;
+            color: var(--accent-primary);
+        }
+
+        @media (max-width: 900px) {
+            .docs-layout {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .side-nav {
+                display: none;
+            }
+
+            .mobile-docs-nav {
+                display: block;
+            }
+        }
+
+        /* Support */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            padding: 1rem 1.5rem;
+            padding-right: 3rem;
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all var(--duration-fast);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px var(--accent-muted);
+        }
+
+        .category-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal);
+            display: block;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        /* Changelog */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-new {
+            background: var(--accent-primary);
+            color: #000;
+        }
+
+        .changelog-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 4rem;
+            border-left: 2px solid var(--border-subtle);
+        }
+
+        .changelog-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 2px solid var(--text-secondary);
+        }
+
+        .changelog-item.latest {
+            border-left-color: var(--accent-primary);
+        }
+
+        .changelog-item.latest::before {
+            border-color: var(--accent-primary);
+            background: var(--accent-primary);
+        }
+
+        /* Legal */
+        .legal-content h2 {
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .legal-content p,
+        .legal-content ul {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .legal-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+        }
+
+        /* Downloads */
+        .download-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all var(--duration-normal);
+        }
+
+        .download-card:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .version-tag {
+            background: var(--bg-surface-2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-right: 0.5rem;
+        }
+
+        /* Product */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            text-align: left;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .spec-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            width: 40%;
+        }
+
+        .viewer-placeholder {
+            width: 100%;
+            height: 500px;
+            background: var(--bg-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .viewer-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .viewer-placeholder:hover .viewer-image {
+            transform: scale(1.02);
+        }
+
+        /* SPA Handling */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .docs-content {
+            max-width: 800px;
+        }
+
+        /* Refactored Utility Classes */
+        .badge-accent {
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            border: 1px solid var(--accent-muted);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-full);
+            background: rgba(56, 189, 248, 0.05);
+        }
+
+        .hero-card {
+            position: relative;
+            padding: 2rem;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(56, 189, 248, 0.05));
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 20px 60px rgba(56, 189, 248, 0.2);
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            border-radius: 1.5rem;
+            filter: drop-shadow(0 0 40px rgba(56, 189, 248, 0.4));
+        }
+
+        .feature-img-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-img-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .feature-overlay-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-surface), transparent);
+        }
+
+        .stat-card-inner {
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+
+        .stat-value.text-primary {
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .story-img-container {
+            background: var(--bg-surface-2);
+            height: 400px;
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .team-card {
+            padding: 2rem;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--bg-surface-2);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .contact-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Skip to Content (Accessibility) -->
+    <a href="#main-content" class="skip-link"
+        style="position: absolute; left: -9999px; z-index: 999; padding: 1rem; background: var(--accent-primary); color: var(--bg-main); text-decoration: none; font-weight: 600;">Skip
+        to main content</a>
+
+    <!-- Navbar -->
+    <nav class="main-navbar" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo" onclick="app.navigate('home')">Drishya Sahayak.</a>
+            <ul class="nav-links desktop-only" style="list-style: none;">
+                <li><a href="#home" class="nav-link active" data-target="home" onclick="app.navigate('home')">Home</a>
+                </li>
+                <li><a href="#product" class="nav-link" data-target="product"
+                        onclick="app.navigate('product')">Product</a></li>
+                <li><a href="#features" class="nav-link" data-target="features"
+                        onclick="app.navigate('features')">Features</a></li>
+                <li><a href="#pricing" class="nav-link" data-target="pricing"
+                        onclick="app.navigate('pricing')">Pricing</a></li>
+                <li><a href="#about" class="nav-link" data-target="about" onclick="app.navigate('about')">About</a></li>
+                <li><a href="#contact" class="nav-link" data-target="contact"
+                        onclick="app.navigate('contact')">Contact</a></li>
+            </ul>
+            <div class="flex-center desktop-only" style="gap: 1rem;">
+                <a href="#newsletter" class="btn btn-ghost"
+                    onclick="window.openModal(document.getElementById('newsletter-modal').innerHTML); return false;">Newsletter</a>
+                <a href="#contact" class="btn btn-primary" onclick="app.navigate('contact')">Join Beta</a>
+            </div>
+            <!-- Mobile Menu Btn injected via JS -->
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content" role="main">
+        <section id="home" class="page-section active">
+            <!-- Hero Section -->
+            <header class="hero-section">
+                <div class="hero-bg-glow"></div>
+                <div class="container">
+                    <div class="hero-grid animate-on-scroll">
+                        <!-- Left Column: Text Content -->
+                        <div class="hero-text-column">
+                            <div style="margin-bottom: 2rem;">
+                                <span class="text-accent badge-accent">
+                                    Next Gen Visual Aid
+                                </span>
+                            </div>
+                            <h1 style="margin-bottom: 1.5rem; text-align: left;">
+                                Perceive reality <br>
+                                <span class="text-gradient">beyond sight.</span>
+                            </h1>
+                            <p
+                                style="font-size: 1.25rem; font-weight: 300; max-width: 600px; text-align: left; margin-bottom: 2rem;">
+                                Drishya Sahayak combines advanced computer vision with intuitive audio feedback to give
+                                you
+                                complete independence.
+                            </p>
+                            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                                <a href="#features" onclick="app.navigate('features')" class="btn btn-primary"
+                                    style="padding: 1rem 2.5rem;">
+                                    Explore Features
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        style="margin-left: 0.5rem; width: 1.2rem; height: 1.2rem;">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                                <a href="https://youtu.be/7CZvz8eTNHY?si=uA5kHZqvApcyDdT-" target="_blank"
+                                    class="btn btn-glass" style="padding: 1rem 2.5rem;">Watch Film</a>
+                            </div>
+                        </div>
+                        <!-- Right Column: Smart Glasses Image -->
+                        <div class="hero-image-column">
+                            <div class="hero-card">
+                                <img src="assets/smart_glasses.png" alt="Drishya Sahayak Smart Glasses"
+                                    class="hero-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Infinite Scroll Feature Strip -->
+            <style>
+                .modal-body-content {
+                    text-align: center;
+                }
+
+                .mb-md {
+                    margin-bottom: 1.5rem;
+                }
+
+                .flex-col {
+                    flex-direction: column;
+                }
+
+                .gap-1 {
+                    gap: 1rem;
+                }
+
+                .form-input {
+                    width: 100%;
+                    padding: 1rem;
+                    border-radius: var(--radius-md);
+                    border: 1px solid var(--border-subtle);
+                    background: var(--bg-main);
+                    color: var(--text-primary);
+                    outline: none;
+                }
+            </style>
+            <div
+                style="border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); padding: 1.5rem 0; background: var(--bg-surface);">
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg> Real-time Processing</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg> 100% Private</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg> 8h+ Battery Life</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg> Instant Updates</span>
+                        <!-- Duplicate -->
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                            </svg> Real-time Processing</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg> 100% Private</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg> 8h+ Battery Life</span>
+                        <span class="marquee-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg> Instant Updates</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Features Grid -->
+            <section class="section-padding">
+                <div class="container">
+                    <div class="text-center animate-on-scroll" style="margin-bottom: 5rem;">
+                        <h2 style="margin-bottom: 1rem;">Engineered for Independence</h2>
+                        <p style="margin: 0 auto;">Advanced computer vision meets intuitive audial feedback.</p>
+                    </div>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                        <div class="card-feature animate-on-scroll">
+                            <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.5">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg></div>
+                            <h3>Smart Recognition</h3>
+                            <p>Identify people, text, and obstacles instantly. Our custom YOLO architecture processes
+                                visual data in milliseconds.</p>
+                        </div>
+                        <div class="card-feature animate-on-scroll" style="transition-delay: 100ms;">
+                            <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13z" />
+                                    <path d="M12 12h.01" />
+                                    <circle cx="12" cy="12" r="1" fill="currentColor" />
+                                </svg></div>
+                            <h3>Voice Command</h3>
+                            <p>Natural language interaction allows you to ask "What's in front of me?" or "Read this
+                                menu" effortlessly.</p>
+                        </div>
+                        <div class="card-feature animate-on-scroll" style="transition-delay: 200ms;">
+                            <div class="card-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg></div>
+                            <h3>Privacy First</h3>
+                            <p>All processing happens locally. No video data is ever sent to the cloud, ensuring your
+                                absolute privacy.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="section-padding"
+                style="background: var(--bg-surface); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: var(--accent-muted); border-radius: 50%; filter: blur(80px);">
+                </div>
+                <div class="container animate-on-scroll">
+                    <div class="grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; text-align: center;">
+                        <div class="surface-card p-4 rounded-lg stat-card-inner">
+                            <div class="stat-value">
+                                98%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="surface-card p-4 rounded-lg stat-card-inner">
+                            <div class="stat-value text-primary">
+                                12h</div>
+                            <div class="stat-label">Battery Life</div>
+                        </div>
+                        <div class="surface-card p-4 rounded-lg stat-card-inner">
+                            <div class="stat-value">
+                                local</div>
+                            <div class="stat-label">Processing</div>
+                        </div>
+                        <div class="surface-card p-4 rounded-lg stat-card-inner">
+                            <div class="stat-value text-primary">
+                                10k+</div>
+                            <div class="stat-label">Community</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="section-padding text-center">
+                <div class="container animate-on-scroll">
+                    <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 2rem;">Ready to upgrade your vision?
+                    </h2>
+                    <div class="flex-center" style="gap: 1.5rem; flex-wrap: wrap;">
+                        <a href="#contact" class="btn btn-primary" onclick="app.navigate('contact')">Join Waitlist</a>
+                        <a href="#features" class="btn btn-ghost" onclick="app.navigate('features')">Tech Specs</a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- FEATURES PAGE -->
+        <section id="features" class="page-section">
+            <header class="feature-hero animate-on-scroll">
+                <div class="container">
+                    <h1 style="margin-bottom: 1.5rem;">The Technology of <span class="text-gradient">Independence</span>
+                    </h1>
+                    <p style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
+                        Built on a custom raspberry pi architecture with edge-optimized AI models.
+                        Powerful vision processing without the need for an internet connection.
+                    </p>
+                </div>
+            </header>
+
+            <section class="section-padding">
+                <div class="container">
+                    <!-- Feature 1 -->
+                    <div class="grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center; gap: 4rem; margin-bottom: 8rem;">
+                        <div class="animate-on-scroll">
+                            <div class="feature-img-container">
+                                <img src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?q=80&w=2670&auto=format&fit=crop"
+                                    alt="Real Time Object Detection HUD" loading="lazy" class="feature-img-cover">
+                                <div class="feature-overlay-gradient">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-on-scroll" style="transition-delay: 200ms;">
+                            <h2 style="margin-bottom: 1.5rem;">Real-Time Object Detection</h2>
+                            <p>Our custom YOLOv12-Nano architecture runs at 30fps directly on device. It identifies
+                                specific objects, people, and obstacles in your path with 98% accuracy.</p>
+                            <ul class="tech-detail-list" style="border: none; padding: 0;">
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Latency under 100ms</li>
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Recognizes 200+ classes of objects</li>
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Adaptive low-light enhancement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center; gap: 4rem; margin-bottom: 8rem;">
+                        <div class="animate-on-scroll" style="order: 2;">
+                            <h2 style="margin-bottom: 1.5rem;">Conversational AI Assistant</h2>
+                            <p>Just ask. The integrated LLM allows natural conversation about your surroundings. "Read
+                                this sign for me" or "Is the crosswalk light green?"</p>
+                            <ul class="tech-detail-list" style="border: none; padding: 0;">
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Natural Language Processing (NLP)</li>
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Context-aware responses</li>
+                                <li class="tech-detail-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg> Offline OCR (Text Reading)</li>
+                            </ul>
+                        </div>
+                        <div class="animate-on-scroll" style="order: 1;">
+                            <div class="feature-img-container">
+                                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2670&auto=format&fit=crop"
+                                    alt="AI Voice Assistant" loading="lazy" class="feature-img-cover">
+                                <div class="feature-overlay-gradient">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Details Grid -->
+                    <div class="text-center animate-on-scroll">
+                        <h2>Technical Specifications</h2>
+                    </div>
+                    <div class="tech-grid animate-on-scroll">
+                        <div class="tech-card">
+                            <h3>Hardware</h3>
+                            <div class="tech-detail-list">
+                                <div class="tech-detail-item"><span>Processor:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">Quad-Core ARM
+                                        Cortex-A76</span></div>
+                                <div class="tech-detail-item"><span>Camera:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">12MP Wide Angle</span>
+                                </div>
+                                <div class="tech-detail-item"><span>Battery:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">5000mAh (12h life)</span>
+                                </div>
+                                <div class="tech-detail-item"><span>Weight:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">180g (Lightweight)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tech-card">
+                            <h3>Software</h3>
+                            <div class="tech-detail-list">
+                                <div class="tech-detail-item"><span>OS:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">DrishyaOS (Linux
+                                        based)</span></div>
+                                <div class="tech-detail-item"><span>Updates:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">OTA Wireless</span></div>
+                                <div class="tech-detail-item"><span>App:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">iOS & Android
+                                        compatible</span></div>
+                                <div class="tech-detail-item"><span>Security:</span> <span
+                                        style="color: var(--text-primary); margin-left: auto;">End-to-End
+                                        Encrypted</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding text-center surface-card" style="margin-top: 4rem; border-radius: 0;">
+                <div class="container">
+                    <h2 style="margin-bottom: 2rem;">Experience the Difference</h2>
+                    <a href="#contact" class="btn btn-primary" onclick="app.navigate('contact')">Request a Demo</a>
+                </div>
+            </section>
+        </section>
+
+        <!-- PRICING PAGE -->
+        <section id="pricing" class="page-section">
+            <header class="pricing-hero animate-on-scroll">
+                <div class="container">
+                    <h1 style="margin-bottom: 1.5rem;">Transparent <span class="text-gradient">Pricing</span></h1>
+                    <p style="font-size: 1.25rem; margin: 0 auto; max-width: 600px;">
+                        Invest in independence. One-time hardware cost with optional premium support.
+                    </p>
+                </div>
+            </header>
+
+            <section class="section-padding" style="padding-top: 0;">
+                <div class="container">
+                    <div class="pricing-grid">
+                        <!-- Starter -->
+                        <div class="price-card animate-on-scroll">
+                            <h3 style="font-size: 1.25rem;">Starter Kit</h3>
+                            <div class="price">₹20,667</div>
+                            <div class="price-period">One-time payment</div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">Everything you need to get started.</p>
+                            <ul class="feature-list">
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Drishya Sahayak Device</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Basic Headstrap</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Core AI features (Object, Text)</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Standard OTA Updates</li>
+                                <li class="feature-item disabled"><svg viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg> Priority Support</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-ghost" style="width: 100%;"
+                                onclick="app.navigate('contact')">Join Waitlist</a>
+                        </div>
+                        <!-- Pro -->
+                        <div class="price-card popular animate-on-scroll" style="transition-delay: 100ms;">
+                            <div class="popular-badge">Most Popular</div>
+                            <h3 style="font-size: 1.25rem; color: var(--accent-primary);">Independence Bundle</h3>
+                            <div class="price">₹28,967</div>
+                            <div class="price-period">One-time payment</div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">The complete experience with accessories.
+                            </p>
+                            <ul class="feature-list">
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Drishya Sahayak Device</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Premium Comfort Headstrap</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Extra Battery Pack (20h total)</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Protective Travel Case</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> 1 Year Priority Support</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-primary" style="width: 100%;"
+                                onclick="app.navigate('contact')">Join Beta (Testing)</a>
+                        </div>
+                        <!-- Support -->
+                        <div class="price-card animate-on-scroll" style="transition-delay: 200ms;">
+                            <h3 style="font-size: 1.25rem;">Support Plan</h3>
+                            <div class="price">₹747<span
+                                    style="font-size: 1rem; color: var(--text-secondary); font-weight: 400;">/mo</span>
+                            </div>
+                            <div class="price-period">Optional subscription</div>
+                            <p style="margin-top: 1rem; font-size: 0.9rem;">For peace of mind and constant care.</p>
+                            <ul class="feature-list">
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> 24/7 Dedicated Support Line</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Accident Protection (Replacement)</li>
+                                <li class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M20 6L9 17l-5-5" />
+                                    </svg> Early Access to Beta Features</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-ghost" style="width: 100%;"
+                                onclick="app.navigate('contact')">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container animate-on-scroll">
+                    <h2 class="text-center" style="margin-bottom: 3rem;">Frequently Asked Questions</h2>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                How does the device work?
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>It uses integrated cameras to capture the environment, processes the visual data
+                                    using on-board AI, and converts it into descriptive audio feedback transmitted via
+                                    bone-conduction headphones.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                Do I need an internet connection?
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>No. Core functions like obstacle detection, people recognition, and basic text
+                                    reading happen entirely offline on the device for speed and privacy. Only advanced
+                                    conversational features require a connection if enabled.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                How long does the battery last?
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>The device is designed to last a full day of typical use (8-12 hours). With the power
+                                    bank included in the Independence Bundle, you can extend this to 20+ hours.</p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" onclick="toggleAccordion(this)">
+                                Is there a warranty?
+                                <svg class="accordion-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Yes, all devices come with a standard 1-year limited warranty covering manufacturing
+                                    defects.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section id="about" class="page-section">
+            <header class="about-hero animate-on-scroll">
+                <div class="container">
+                    <h1 style="margin-bottom: 1.5rem;">Our <span class="text-gradient">Mission</span></h1>
+                    <p style="font-size: 1.25rem; margin: 0 auto; max-width: 700px;">
+                        We are dedicated to removing barriers for the visually impaired through innovative, affordable,
+                        and privacy-focused technology.
+                    </p>
+                </div>
+            </header>
+
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                        <div class="animate-on-scroll">
+                            <h2 style="margin-bottom: 2rem;">The Story</h2>
+                            <p>Drishya Sahayak started as a research project to solve a simple problem: digital
+                                accessibility tools were either too expensive or relied too heavily on cloud
+                                connectivity.</p>
+                            <p>Our team of engineers and designers spent 2 years iterating on hardware that balances
+                                power, battery life, and comfort. The result is a device that feels less like a gadget
+                                and more like an extension of your senses.</p>
+                        </div>
+                        <div class="animate-on-scroll">
+                            <div class="story-img-container">
+                                <img src="assets/engineering_workshop.png" alt="Engineering Workshop" loading="lazy"
+                                    class="feature-img-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline animate-on-scroll">
+                        <div class="timeline-item">
+                            <span class="timeline-date">2023 - Q1</span>
+                            <h3>Concept & Prototyping</h3>
+                            <p>Initial research into efficient edge-AI models and hardware selection.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-date">2024 - Q2</span>
+                            <h3>Alpha Testing</h3>
+                            <p>Deployed 50 prototype units to local communities for real-world feedback.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-date">2024 - Q4</span>
+                            <h3>Refinement</h3>
+                            <p>Finalized hardware design and optimized YOLO models for the NPU.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-date">2025 - Q1</span>
+                            <h3>Launch</h3>
+                            <p>Official release of Drishya Sahayak Gen 1.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team -->
+            <section class="section-padding">
+                <div class="container animate-on-scroll">
+                    <h2 class="text-center" style="margin-bottom: 3rem;">The Team</h2>
+                    <div class="grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center;">
+                        <!-- Member 1 -->
+                        <div class="card team-card">
+                            <div class="team-avatar">
+                            </div>
+                            <h3>Dhyandev P</h3>
+                            <p class="team-role">Lead Developer & Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page-section">
+            <header class="contact-hero animate-on-scroll">
+                <div class="container">
+                    <h1 style="margin-bottom: 1.5rem;">Get in <span class="text-gradient">Touch</span></h1>
+                    <p style="font-size: 1.25rem; margin: 0 auto; max-width: 600px;">
+                        Have questions? We are here to help. Reach out to our team for support, sales, or partnership
+                        inquiries.
+                    </p>
+                </div>
+            </header>
+
+            <section class="section-padding" style="padding-top: 0;">
+                <div class="container">
+                    <div class="contact-grid">
+                        <div class="contact-info-card animate-on-scroll">
+                            <div class="info-item">
+                                <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg></div>
+                                <div class="info-content">
+                                    <h4>Email Us</h4>
+                                    <p style="margin-bottom: 0.5rem;">General Inquiries</p>
+                                    <a href="mailto:drishyasahayak@gmail.com"
+                                        class="text-accent">drishyasahayak@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg></div>
+                                <div class="info-content">
+                                    <h4>Call Us</h4>
+                                    <p style="margin-bottom: 0.5rem;">Beta Program & Inquiries</p>
+                                    <a href="tel:+918281374024" class="text-accent">+91 8281374024</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg></div>
+                                <div class="info-content">
+                                    <h4>Headquarters</h4>
+                                    <p style="margin-bottom: 0;">
+                                        Drishya Sahayak Labs<br>
+                                        Kannur, Kerala<br>
+                                        India
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form class="contact-form animate-on-scroll" style="transition-delay: 200ms;"
+                            onsubmit="event.preventDefault(); window.showToast('Message sent! We will contact you shortly.');">
+                            <h3 style="margin-bottom: 2rem;">Send a Message</h3>
+                            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                                <div class="form-group" style="margin: 0;">
+                                    <label class="contact-label">First
+                                        Name</label>
+                                    <input type="text" class="form-control" placeholder="John" required>
+                                </div>
+                                <div class="form-group" style="margin: 0;">
+                                    <label class="contact-label">Last
+                                        Name</label>
+                                    <input type="text" class="form-control" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Email
+                                    Address</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Subject</label>
+                                <select class="form-control">
+                                    <option>General Inquiry</option>
+                                    <option>Support</option>
+                                    <option>Sales / Bulk Order</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Message</label>
+                                <textarea class="form-control" rows="5" placeholder="How can we help you?"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="map-section animate-on-scroll"
+                        style="height: 300px; border-radius: var(--radius-lg); margin-top: 3rem; overflow: hidden; position: relative;">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2674&auto=format&fit=crop"
+                            alt="Map Location" loading="lazy"
+                            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+                        <div
+                            style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4);">
+                            <span class="btn btn-glass">Open in Maps</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat FAB -->
+            <a href="#contact" class="btn btn-primary"
+                style="position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; border-radius: 50%; padding: 0; box-shadow: var(--shadow-glow); z-index: 99;"
+                onclick="app.navigate('contact'); window.showToast('Live Chat Support currently offline. Please email us.'); return false;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    style="margin: 0; width: 24px; height: 24px;">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </a>
+        </section>
+
+        <!-- PRODUCT PAGE -->
+        <section id="product" class="page-section">
+            <header class="section-padding" style="padding-top: 8rem; padding-bottom: 4rem;">
+                <div class="container">
+                    <div class="flex-center" style="flex-direction: column; text-align: center;">
+                        <span class="text-accent" style="margin-bottom: 1rem; font-weight: 600;">GENERATION 1</span>
+                        <h1 style="max-width: 800px; margin-bottom: 2rem;">The device that speaks <br> what it sees.
+                        </h1>
+                        <p style="max-width: 600px; margin-bottom: 4rem;">
+                            Precision engineered hardware meets state-of-the-art computer vision models.
+                            Lightweight, durable, and ready for the real world.
+                        </p>
+                        <div class="viewer-placeholder animate-on-scroll"
+                            style="height: 400px; width: 100%; border-radius: var(--radius-lg); margin-top: 2rem;">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop"
+                                alt="Product Detail" class="viewer-image">
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+                        <div class="animate-on-scroll">
+                            <h3 style="margin-bottom: 1rem;">Processing Core</h3>
+                            <p>Powered by the Raspberry Pi 5, delivering desktop-class performance in a portable form
+                                factor for instantaneous object detection.</p>
+                        </div>
+                        <div class="animate-on-scroll" style="transition-delay: 100ms;">
+                            <h3 style="margin-bottom: 1rem;">Camera System</h3>
+                            <p>High-definition wide-angle camera module optimized for low-light conditions and rapid
+                                frame capture.</p>
+                        </div>
+                        <div class="animate-on-scroll" style="transition-delay: 200ms;">
+                            <h3 style="margin-bottom: 1rem;">Haptic Feedback</h3>
+                            <p>Subtle vibration motors provide directional cues for navigation without interrupting
+                                audio feeds.</p>
+                        </div>
+                        <div class="animate-on-scroll" style="transition-delay: 300ms;">
+                            <h3 style="margin-bottom: 1rem;">Connectivity</h3>
+                            <p>5G capable with fallback to LTE/4G ensures you are never disconnected from maps and
+                                updates.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding">
+                <div class="container animate-on-scroll">
+                    <h2 class="text-center" style="margin-bottom: 3rem;">Technical Specifications</h2>
+                    <table class="spec-table">
+                        <tbody>
+                            <tr>
+                                <th>Processor</th>
+                                <td>Quad-core Arm Cortex-A76 @ 2.4GHz</td>
+                            </tr>
+                            <tr>
+                                <th>Memory</th>
+                                <td>8GB LPDDR4X-4267 SDRAM</td>
+                            </tr>
+                            <tr>
+                                <th>Camera</th>
+                                <td>12MP Wide Angle, f/1.8 aperture</td>
+                            </tr>
+                            <tr>
+                                <th>Battery</th>
+                                <td>5000mAh Lithium-Polymer (8h active use)</td>
+                            </tr>
+                            <tr>
+                                <th>Connectivity</th>
+                                <td>WiFi 6, Bluetooth 5.0, GPS/GLONASS</td>
+                            </tr>
+                            <tr>
+                                <th>Sensors</th>
+                                <td>Lidar (Optional), Accelerometer, Gyroscope</td>
+                            </tr>
+                            <tr>
+                                <th>Weight</th>
+                                <td>180g (Device unit)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container animate-on-scroll">
+                    <h2 style="margin-bottom: 3rem;">What's included</h2>
+                    <div class="grid"
+                        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); text-align: center;">
+                        <div class="card">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🕶️</div>
+                            <h4>Smart Glasses</h4>
+                        </div>
+                        <div class="card">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📦</div>
+                            <h4>Compute Unit</h4>
+                        </div>
+                        <div class="card">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🔌</div>
+                            <h4>Fast Charger</h4>
+                        </div>
+                        <div class="card">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🎧</div>
+                            <h4>Bone Conduction Headset</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+
+        <!-- SUPPORT PAGE -->
+        <section id="support" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1 style="margin-bottom: 1.5rem;">Support Center</h1>
+                    <div style="max-width: 500px; margin: 0 auto; position: relative;">
+                        <input type="text" placeholder="Search for answers..."
+                            style="width: 100%; padding: 1rem 1.5rem; padding-right: 3rem; border-radius: var(--radius-full); border: 1px solid var(--border-subtle); background: var(--bg-surface); color: var(--text-primary); outline: none;">
+                        <svg style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5;"
+                            width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div class="card p-4 text-center" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Getting Started</h3>
+                            <p style="margin-bottom: 1.5rem;">First time setup, unboxing, and basic usage guide.</p>
+                            <a href="#documentation"
+                                onclick="app.navigate('documentation'); document.getElementById('doc-setup').scrollIntoView()"
+                                class="btn btn-ghost">View Articles</a>
+                        </div>
+                        <div class="card p-4 text-center" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Troubleshooting</h3>
+                            <p style="margin-bottom: 1.5rem;">Solutions to common issues with connectivity and audio.
+                            </p>
+                            <a href="#contact" onclick="app.navigate('contact')" class="btn btn-ghost">Contact
+                                Support</a>
+                        </div>
+                        <div class="card p-4 text-center" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Account & Billing</h3>
+                            <p style="margin-bottom: 1.5rem;">Manage your orders, subscriptions, and warranty status.
+                            </p>
+                            <a href="#contact" onclick="app.navigate('contact')" class="btn btn-ghost">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- DOWNLOADS PAGE -->
+        <section id="downloads" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1 style="margin-bottom: 1rem;">Downloads</h1>
+                    <p>Latest firmware, drivers, and manuals.</p>
+                </div>
+            </header>
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <div class="card"
+                        style="display: flex; align-items: center; justify-content: space-between; padding: 2rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="margin-bottom: 0.5rem;">DrishyaOS Firmware v1.2.4</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Release Date: Feb 15, 2025 |
+                                Size: 1.4GB</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="window.showToast('Download started...')">Download
+                            .IMG</button>
+                    </div>
+                    <div class="card"
+                        style="display: flex; align-items: center; justify-content: space-between; padding: 2rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
+                        <div>
+                            <h3 style="margin-bottom: 0.5rem;">User Manual (PDF)</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">English | 2.5MB</p>
+                        </div>
+                        <button class="btn btn-ghost" onclick="window.showToast('Downloading PDF...')">Download
+                            PDF</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- CHANGELOG PAGE -->
+        <section id="changelog" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1>Changelog</h1>
+                </div>
+            </header>
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container" style="max-width: 800px;">
+                    <div class="card" style="padding: 2rem; margin-bottom: 2rem;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>v1.2.4</h3>
+                            <span
+                                style="background: var(--accent-primary); color: #000; padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 700;">Latest</span>
+                        </div>
+                        <ul style="padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">Improved low-light detection accuracy by 15%.</li>
+                            <li style="margin-bottom: 0.5rem;">Fixed audio latency issue on Bluetooth connection.</li>
+                            <li style="margin-bottom: 0.5rem;">Added Hindi language support for text reading.</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="padding: 2rem; margin-bottom: 2rem; opacity: 0.7;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3>v1.0.0</h3>
+                            <span
+                                style="border: 1px solid var(--border-subtle); padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: 0.8rem;">Initial
+                                Release</span>
+                        </div>
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Initial hardware launch.</li>
+                            <li>Basic object detection enabled.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- DEVELOPER PAGE -->
+        <section id="developer" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <!-- Placeholder for Avatar or use a generic tech icon -->
+                    <div
+                        style="width: 150px; height: 150px; margin: 0 auto 2rem; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, transparent 70%); border-radius: 50%; border: 1px solid var(--glass-border);">
+                        <span style="font-size: 4rem;">👨‍💻</span>
+                    </div>
+                    <h1 style="margin-bottom: 1rem;">Dhyandev P</h1>
+                    <p
+                        style="color: var(--accent-primary); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">
+                        Lead Developer & Engineer</p>
+                    <p style="font-size: 1.1rem; margin: 2rem auto; color: var(--text-secondary); max-width: 600px;">
+                        Passionate about building accessible technology and crafting premium digital experiences.
+                        Drishya Sahayak is a culmination of research in edge-AI and user-centric design.
+                    </p>
+                    <div class="flex-center" style="gap: 1rem; margin-top: 2rem;">
+                        <a href="https://github.com/dhyandevp/Drishya_Sahayak" class="btn btn-ghost" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                        <a href="https://linktr.ee/DhyandevRTX" class="btn btn-ghost" target="_blank"
+                            rel="noopener noreferrer">Twitter</a>
+                    </div>
+                </div>
+            </header>
+
+            <section class="section-padding" style="background: var(--bg-surface);">
+                <div class="container">
+                    <h2 class="text-center" style="margin-bottom: 3rem;">Technical Expertise</h2>
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div class="card p-4 text-center" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Computer Vision</h3>
+                            <p style="color: var(--text-secondary);">Specializing in YOLO architectures, Object
+                                Detection, and Semantic Segmentation on edge devices.</p>
+                        </div>
+                        <div class="card p-4 text-center" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Web Development</h3>
+                            <p style="color: var(--text-secondary);">Full-stack development with a focus on modern,
+                                responsive, and accessible UI/UX.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- PRIVACY PAGE -->
+        <section id="privacy" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1>Privacy Policy</h1>
+                </div>
+            </header>
+            <section class="container" style="padding-bottom: 4rem; max-width: 800px;">
+                <p>Your privacy is paramount. This policy outlines how we handle data.</p>
+                <h3 style="margin-top: 2rem;">1. Data Collection</h3>
+                <p>We do not collect video or audio recordings from the device. All processing is done locally.</p>
+                <h3 style="margin-top: 2rem;">2. Usage Statistics</h3>
+                <p>We may collect anonymous usage statistics (e.g., battery cycles, error logs) only if you opt-in.</p>
+            </section>
+        </section>
+
+        <!-- TERMS PAGE -->
+        <section id="terms" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1>Terms of Service</h1>
+                </div>
+            </header>
+            <section class="container" style="padding-bottom: 4rem; max-width: 800px;">
+                <p>By using Drishya Sahayak, you agree to these terms.</p>
+                <h3 style="margin-top: 2rem;">1. Safe Use</h3>
+                <p>The device is an aid, not a replacement for a cane, dog, or human guide. Always exercise caution.</p>
+                <h3 style="margin-top: 2rem;">2. Warranty</h3>
+                <p>We provide a 1-year limited warranty for hardware defects.</p>
+            </section>
+        </section>
+        <!-- DOCUMENTATION PAGE -->
+        <section id="documentation" class="page-section">
+            <header class="section-padding text-center">
+                <div class="container">
+                    <h1>Documentation</h1>
+                    <p style="margin: 0 auto; max-width: 600px; color: var(--text-secondary);">Comprehensive guides and
+                        API references for developers.</p>
+                </div>
+            </header>
+            <section class="container docs-layout" style="padding-bottom: 4rem;">
+                <!-- Mobile Navigation Dropdown -->
+                <div class="mobile-docs-nav">
+                    <select class="mobile-docs-select" onchange="scrollToDocSection(this.value)">
+                        <option value="">Jump to section...</option>
+                        <optgroup label="Getting Started">
+                            <option value="introduction">Introduction</option>
+                            <option value="installation">Installation</option>
+                            <option value="quick-start">Quick Start</option>
+                        </optgroup>
+                        <optgroup label="Core Concepts">
+                            <option value="architecture">Architecture</option>
+                            <option value="api-reference">API Reference</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- Desktop Side Navigation -->
+                <aside class="side-nav">
+                    <nav>
+                        <h4>Getting Started</h4>
+                        <a href="#introduction" class="active"
+                            onclick="scrollToDocSection('introduction'); return false;">Introduction</a>
+                        <a href="#installation"
+                            onclick="scrollToDocSection('installation'); return false;">Installation</a>
+                        <a href="#quick-start" onclick="scrollToDocSection('quick-start'); return false;">Quick
+                            Start</a>
+
+                        <h4>Core Concepts</h4>
+                        <a href="#architecture"
+                            onclick="scrollToDocSection('architecture'); return false;">Architecture</a>
+                        <a href="#api-reference" onclick="scrollToDocSection('api-reference'); return false;">API
+                            Reference</a>
+                    </nav>
+                </aside>
+
+                <div class="docs-content">
+                    <!-- Introduction -->
+                    <article id="introduction">
+                        <h2>Introduction</h2>
+                        <p>Drishya Sahayak is an open-source AI vision assistant designed to run on edge devices like
+                            the Raspberry Pi 5. It leverages optimized YOLOv12-Nano models for real-time object
+                            detection.</p>
+                        <div class="notice">
+                            <strong>Note:</strong> This project is currently in Beta. APIs are subject to change without
+                            notice.
+                        </div>
+                    </article>
+
+                    <!-- Installation -->
+                    <article id="installation">
+                        <h2>Installation</h2>
+                        <p>Clone the repository and install dependencies using our setup script.</p>
+                        <div class="code-block-wrapper">
+                            <button class="code-copy-btn" onclick="copyCode(this)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <pre class="code-block">git clone https://github.com/dhyandevp/Drishya_Sahayak.git
+cd Drishya_Sahayak
+chmod +x setup.sh
+./setup.sh</pre>
+                        </div>
+                    </article>
+
+                    <!-- Quick Start -->
+                    <article id="quick-start">
+                        <h2>Quick Start</h2>
+                        <p>Once installed, you can start the vision system with the following command:</p>
+                        <div class="code-block-wrapper">
+                            <button class="code-copy-btn" onclick="copyCode(this)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <pre class="code-block">python3 main.py --mode=detection</pre>
+                        </div>
+                        <p>The system will initialize the camera and begin audio feedback immediately.</p>
+                    </article>
+
+                    <!-- Architecture -->
+                    <article id="architecture">
+                        <h2>Architecture</h2>
+                        <p>The system is built on a modular architecture separating vision processing, audio synthesis,
+                            and hardware IO.</p>
+                        <ul>
+                            <li><strong>Vision Module:</strong> Handles camera input and YOLO inference.</li>
+                            <li><strong>Audio Module:</strong> Manages TTS generation and bone-conduction output.</li>
+                            <li><strong>Core:</strong> Orchestrates data flow and state management.</li>
+                        </ul>
+                    </article>
+
+                    <!-- API Reference -->
+                    <article id="api-reference">
+                        <h2>API Reference</h2>
+                        <p>Interact with the core system using our Python bindings.</p>
+                        <div class="code-block-wrapper">
+                            <button class="code-copy-btn" onclick="copyCode(this)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                Copy
+                            </button>
+                            <pre class="code-block">import drishya
+
+# Initialize
+assistant = drishya.Core()
+
+# Start Detection
+assistant.start_detection(model="yolo-n")
+
+# Get Status callback
+@assistant.on_event
+def handle_event(event):
+    print(f"Detected: {event.label}")</pre>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 1rem; text-transform: none; letter-spacing: -0.02em;">
+                        Drishya Sahayak.</h4>
+                    <p style="max-width: 300px; font-size: 0.95rem; color: var(--text-secondary);">
+                        Empowering the visually impaired through cutting-edge AI technology. Built for independence.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#product" onclick="app.navigate('product')">Overview</a></li>
+                        <li><a href="#features" onclick="app.navigate('features')">Features</a></li>
+                        <li><a href="#pricing" onclick="app.navigate('pricing')">Pricing</a></li>
+                        <li><a href="https://github.com/dhyandevp/Drishya_Sahayak/releases"
+                                target="_blank">Changelog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#documentation" onclick="app.navigate('documentation')">Documentation</a></li>
+                        <li><a href="#contact" onclick="app.navigate('contact')">Contact Us</a></li>
+                        <li><a href="#documentation"
+                                onclick="app.navigate('documentation'); scrollToDocSection('installation'); return false;">Downloads</a>
+                        </li>
+                        <li><a href="#contact" onclick="app.navigate('contact')">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#privacy" onclick="app.navigate('privacy')">Privacy Policy</a></li>
+                        <li><a href="#terms" onclick="app.navigate('terms')">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 Drishya Sahayak. All rights reserved. <br>
+                <div class="footer-attribution">
+                    Designed & Engineered by <a href="#developer" onclick="app.navigate('developer')">Dhyandev P</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Templates for Modals -->
+    <!-- Templates for Modals -->
+    <div id="newsletter-modal" style="display: none;">
+        <div class="modal-body-content">
+            <h2 class="mb-1">Stay Updated</h2>
+            <p class="mb-md">Join our newsletter for the latest updates on Drishya Sahayak and AI technology.</p>
+            <form class="flex flex-col gap-1"
+                onsubmit="event.preventDefault(); closeModal(); window.showToast('Subscribed successfully!');">
+                <input type="email" placeholder="Enter your email" class="form-input" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- SPA Router & Utilities ---
+        const app = {
+            navigate: function (pageId) {
+                // Remove # if present
+                pageId = pageId.replace('#', '');
+
+                // Hide all sections
+                document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+
+                // Show target section
+                const target = document.getElementById(pageId);
+                if (target) {
+                    target.classList.add('active');
+                    window.scrollTo(0, 0);
+
+                    // Update URL hash without jumping
+                    history.pushState(null, null, '#' + pageId);
+
+                    // Update Navbar Active State
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.dataset.target === pageId) {
+                            link.classList.add('active');
+                        }
+                    });
+
+                    // Trigger animations for the new page
+                    if (window.observer) {
+                        target.querySelectorAll('.animate-on-scroll').forEach(el => {
+                            el.classList.remove('visible');
+                            window.observer.observe(el);
+                        });
+                    }
+                }
+            },
+
+            init: function () {
+                // Check hash on load
+                const hash = window.location.hash.substring(1) || 'home';
+                this.navigate(hash);
+
+                // Handle back button
+                window.addEventListener('popstate', () => {
+                    this.navigate(window.location.hash.substring(1) || 'home');
+                });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Navbar Scroll Effect ---
+            const navbar = document.querySelector('.main-navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // --- Scroll Animations ---
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            window.observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            animateElements.forEach(el => window.observer.observe(el));
+
+            // --- Popup System ---
+            window.showToast = function (message) {
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `<span style="color: var(--accent-primary)">●</span><span>${message}</span>`;
+                document.body.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('active'));
+                setTimeout(() => {
+                    toast.classList.remove('active');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3000);
+            };
+
+            // Modal Manager
+            const modalBackdrop = document.createElement('div');
+            modalBackdrop.className = 'modal-backdrop';
+            modalBackdrop.innerHTML = `<div class="modal"><button class="modal-close">&times;</button><div class="modal-content"></div></div>`;
+            document.body.appendChild(modalBackdrop);
+
+            const modalContent = modalBackdrop.querySelector('.modal-content');
+            const modalClose = modalBackdrop.querySelector('.modal-close');
+
+            modalClose.addEventListener('click', () => window.closeModal());
+            modalBackdrop.addEventListener('click', (e) => { if (e.target === modalBackdrop) window.closeModal(); });
+
+            window.openModal = function (contentHtml) {
+                modalContent.innerHTML = contentHtml;
+                modalBackdrop.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.closeModal = function () {
+                modalBackdrop.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) window.closeModal();
+            });
+
+            // --- Mobile Menu ---
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer && window.innerWidth <= 768) {
+                const btn = document.createElement('button');
+                btn.className = 'mobile-menu-btn';
+                btn.innerHTML = '☰';
+                btn.onclick = toggleMobileMenu;
+                navContainer.appendChild(btn);
+
+                const overlay = document.createElement('div');
+                overlay.className = 'mobile-menu-overlay';
+                overlay.innerHTML = `
+                    <a href="#home" onclick="app.navigate('home')">Home</a>
+                    <a href="#product" onclick="app.navigate('product')">Product</a>
+                    <a href="#features" onclick="app.navigate('features')">Features</a>
+                    <a href="#pricing" onclick="app.navigate('pricing')">Pricing</a>
+                    <a href="#support" onclick="app.navigate('support')">Support</a>
+                    <a href="#contact" onclick="app.navigate('contact')">Contact</a>
+                    <a href="#documentation" onclick="app.navigate('documentation')">Docs</a>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;" onclick="app.navigate('contact')">Pre-order Now</a>
+                    <button class="modal-close" style="top: 2rem; right: 2rem; font-size: 2rem;">&times;</button>
+                `;
+                document.body.appendChild(overlay);
+                overlay.querySelector('.modal-close').onclick = toggleMobileMenu;
+                overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', toggleMobileMenu));
+
+                function toggleMobileMenu() {
+                    overlay.classList.toggle('active');
+                    btn.innerHTML = overlay.classList.contains('active') ? '' : '☰';
+                    document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+                }
+            }
+
+            // --- Init App ---
+            app.init();
+        });
+
+        // --- Helper for Accordions ---
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const isOpen = content.classList.contains('active');
+            // Close neighbors
+            const parent = element.closest('.accordion') || element.parentElement.parentElement;
+            if (parent) {
+                parent.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('active'));
+                parent.querySelectorAll('.accordion-header span').forEach(s => s.textContent = '+');
+                parent.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+            }
+            if (!isOpen) {
+                element.classList.add('active');
+                content.classList.add('active');
+                if (element.querySelector('span')) element.querySelector('span').textContent = '−';
+                // For style based max-height:
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = null;
+            }
+        }
+
+        // --- Documentation Functions ---
+        function scrollToDocSection(sectionId) {
+            if (!sectionId) return;
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerOffset = 100;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+                history.pushState(null, null, '#' + sectionId);
+
+                document.querySelectorAll('.side-nav a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                const mobileSelect = document.querySelector('.mobile-docs-select');
+                if (mobileSelect) mobileSelect.value = sectionId;
+            }
+        }
+
+        function copyCode(button) {
+            const wrapper = button.closest('.code-block-wrapper');
+            const codeBlock = wrapper.querySelector('.code-block');
+            const text = codeBlock.innerText; // Use innerText to preserve newlines
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHtml = button.innerHTML;
+                button.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerHTML = originalHtml;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                if (window.showToast) window.showToast('Failed to copy');
+            });
+        }
+    </script>
+</body>
+
+</html>
